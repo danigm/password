@@ -5,11 +5,15 @@
     <script type="text/javascript" src="{{ MEDIA_URL }}js/search.js"></script>
 {% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/search.css" />
+{% endblock %}
+
 {% block content %}
 
 <form method="POST" action="">
     <input id="search" name="search" type="entry" value="www.example.com"/>
-    <input type="submit" value="{% trans "Get logins" %}"/>
+    <input id="search_button" type="submit" value="{% trans "Get logins" %}"/>
 </form>
 
 <a href="{% url siteapp.views.submit %}"> {% trans "Submit a new account" %} </a>

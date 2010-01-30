@@ -1,0 +1,12 @@
+#submit input {
+    font-size: xx-large;
+}
+#submit th {
+    text-align: right;
+    width: 30%;
+}
+
+#submit td {
+    text-align: left;
+    width: 70%;
+}

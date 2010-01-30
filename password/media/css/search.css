@@ -1,6 +1,58 @@
-li { list-style: none; }
 .site {
     padding: 2em;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px dashed black;
     border-top: 1px dashed black;
+}
+#search {
+    font-size: xx-large;
+    width: 700px;
+}
+
+#search_button {
+    font-size: xx-large;
+}
+
+.site th {
+    text-align: right;
+    width: 30%;
+}
+
+.site td {
+    text-align: left;
+    width: 70%;
+}
+
+.username, .password, .siteurl, .comment {
+    border: 1px solid gray;
+    padding: 2px;
+    width: 50%;
+    font-size: large;
+    background-color: white;
+}
+
+.site table {
+    width: 100%;
+}
+
+.bad {
+    color: red;
+}
+
+.ok {
+    color: green;
+}
+
+.rate { 
+    font-weight: bold;
+    margin: 5px;
+}
+
+.site {
+    padding: 1em;
+}
+
+.site:hover {
+    background-color: #efefef;
 }

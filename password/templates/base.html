@@ -4,14 +4,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
-        <title> {% block title %}{% endblock %} </title>
+        <title> {% block title %} Share your passwords {% endblock %} </title>
         <link rel="shortcut icon" href="{{ MEDIA_URL }}favicon.ico" type="image/x-icon" />
         <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/index.css" />
         {% block feed %} {% endblock %}
         {% block css %} {% endblock %}
         {% block js %} {% endblock %}
     </head>
     <body>
-        {% block content %}{% endblock %}
+        <div id="content">
+            <a href="{% url siteapp.views.index %}"><img src="{{ MEDIA_URL }}img/logo.png" alt="password logo"/></a>
+            {% block content %}{% endblock %}
+        </div>
     </body>
 </html>

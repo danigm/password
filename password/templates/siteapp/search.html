@@ -13,26 +13,36 @@
 
 {% block content %}
 
-<a href="{% url siteapp.views.index %}">index</a>
 <h2> {% trans "Searching for: " %} {{ q }} </h2>
 
-<ul>
     {% for site in sites %}
-    <li>
         <div class="site">
-            <span class="title">{% trans "site" %}: </span>
-            <span class="siteurl">{{ site.siteurl|urlize }}</span><br/>
+            <table>
+                <tr>
+                    <th class="title">{% trans "site" %}: </th>
+                    <td><div class="siteurl">{{ site.siteurl|urlize }}</div></td>
+                </tr>
+                <tr>
+                    <th class="title">{% trans "username" %}: </th>
+                    <td><div class="username">{{ site.username }}</div></td>
+                </tr>
+                <tr>
+                    <th class="title">{% trans "password" %}: </th>
+                    <td><div class="password">{{ site.password }}</div</td>
+                </tr>
+                <tr>
+                    <th class="title">{% trans "comment" %}: </th>
+                    <td><div class="comment">{{ site.other }}</div></td>
+                </tr>
+                <tr>
+                    <th class="title">{% trans "stats" %}: </th>
+                    <td class="stats {{ site.rate_class }}">
+                        <span class="rate_percentage">{{ site.rate }}</span>% {% trans "success rate" %}
+                        (<span class="votes">{{ site.votes }}</span> {% trans "votes" %})
+                    </td>
+                </tr>
 
-            <span class="title">{% trans "username" %}: </span>
-            <span class="username">{{ site.username }}</span><br/>
-            <span class="title">{% trans "password" %}: </span>
-            <span class="password">{{ site.password }}</span><br/>
-            <span class="title">{% trans "comment" %}: </span>
-            <span class="comment">{{ site.other }}</span><br/>
-            <span class="title">{% trans "stats" %}: </span>
-            <span class="stats">
-                <span class="rate_percentage">{{ site.rate }}</span> {% trans "success rate" %}
-                (<span class="votes">{{ site.votes }}</span> {% trans "votes" %})</span><br/>
+            </table>
 
             <span class="rate">
                 {% trans "Did this login work out for you?" %}
@@ -40,9 +50,19 @@
                 <a class="voteno" href="{% url siteapp.views.vote id=site.id vote=0 %}">{% trans "no" %}</a>
             </span>
         </div>
-    </li>
     {% endfor %}
-</ul>
+
+    {% ifnotequal page 1 %}
+        <a href="{% url siteapp.views.search q=q %}?page={{ page|add:"-1" }}">{% trans "Prev" %}</a>
+    {% endifnotequal %}
+
+    {% blocktrans with page as page and paginator.num_pages as numpages %}
+        Page {{ page }} of {{ numpages }}
+    {% endblocktrans %}
+
+    {% ifnotequal page paginator.num_pages %}
+        <a href="{% url siteapp.views.search q=q %}?page={{ page|add:"1" }}">{% trans "Next" %}</a>
+    {% endifnotequal %}
 
 {% include "siteapp/submitform.html" %}
 

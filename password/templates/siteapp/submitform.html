@@ -1,5 +1,9 @@
 {% load i18n %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/submit.css" />
+{% endblock %}
+
 <div id="submit">
     <h2>{% trans "Submit a new account" %}</h2>
     <form action="{% url siteapp.views.submit %}" method="POST">
