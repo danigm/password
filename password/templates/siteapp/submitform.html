@@ -1,0 +1,11 @@
+{% load i18n %}
+
+<div id="submit">
+    <h2>{% trans "Submit a new account" %}</h2>
+    <form action="{% url siteapp.views.submit %}" method="POST">
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="{% trans "Send" %}"/>
+    </form>
+</div>

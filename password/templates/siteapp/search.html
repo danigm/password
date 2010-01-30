@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Searching for: " %} {{ q }} {% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/search.js"></script>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/search.css" />
+{% endblock %}
+
+{% block content %}
+
+<a href="{% url siteapp.views.index %}">index</a>
+<h2> {% trans "Searching for: " %} {{ q }} </h2>
+
+<ul>
+    {% for site in sites %}
+    <li>
+        <div class="site">
+            <span class="title">{% trans "site" %}: </span>
+            <span class="siteurl">{{ site.siteurl|urlize }}</span><br/>
+
+            <span class="title">{% trans "username" %}: </span>
+            <span class="username">{{ site.username }}</span><br/>
+            <span class="title">{% trans "password" %}: </span>
+            <span class="password">{{ site.password }}</span><br/>
+            <span class="title">{% trans "comment" %}: </span>
+            <span class="comment">{{ site.other }}</span><br/>
+            <span class="title">{% trans "stats" %}: </span>
+            <span class="stats">
+                <span class="rate_percentage">{{ site.rate }}</span> {% trans "success rate" %}
+                (<span class="votes">{{ site.votes }}</span> {% trans "votes" %})</span><br/>
+
+            <span class="rate">
+                {% trans "Did this login work out for you?" %}
+                <a class="voteyes" href="{% url siteapp.views.vote id=site.id vote=1 %}">{% trans "yes" %}</a>
+                <a class="voteno" href="{% url siteapp.views.vote id=site.id vote=0 %}">{% trans "no" %}</a>
+            </span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% include "siteapp/submitform.html" %}
+
+{% endblock %}

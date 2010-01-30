@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Submit a new account" %} {% endblock %}
+
+{% block content %}
+
+<a href="{% url siteapp.views.index %}">index</a>
+{% include "siteapp/submitform.html" %}
+
+{% endblock %}
